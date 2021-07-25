@@ -6,7 +6,8 @@ const initialState = {
   body: '',
   title: '',
   category: '',
-  rate: ''
+  rate: '',
+  id: ''
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -18,7 +19,8 @@ const moviesReducer = (state = initialState, action) => {
         body: action.body,
         title: action.title,
         category: action.category,
-        rate: action.rate
+        rate: action.rate,
+        id: action.id
       };
     case actions.CLOSE_MODAL:
       return {
