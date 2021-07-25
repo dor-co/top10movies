@@ -17,3 +17,10 @@ export const close = () => {
     type: actions.CLOSE_MODAL,
   };
 };
+
+export const getData = (movie) => {
+  return {
+    type: actions.GET_MOVIES_DATA,
+    data: movie
+  };
+};
