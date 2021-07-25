@@ -40,59 +40,66 @@ function MovieDetailsBody() {
     }
 
     const saveEdit = () => {
-        if(title.trim() !== '' && rate.toString().trim() !== '' && category.trim() !== ''){
+        if (title.trim() !== '' && rate.toString().trim() !== '' && category.trim() !== '') {
             db.collection("Movies").doc(moviesRed.id)
-            .update({
-                title: title,
-                rate: rate,
-                category: category
-            })
+                .update({
+                    title: title,
+                    rate: rate,
+                    category: category
+                })
 
             return dispatch(close())
-        }else{
+        } else {
             alert('!!!');
         }
+    }
+
+    const deleteMovie = () => {
+        db.collection("Movies").doc(moviesRed.id)
+            .delete()
+
+        return dispatch(close())
     }
 
     return (
         <div>
             {editView ? (
                 <>
-                    {/* movie title input */}
-                    <div className="input-group mb-3">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="inputGroup-sizing-default">Movie Title</span>
+                    <form className="was-validated">
+                        {/* movie title input */}
+                        <div className="mb-3">
+                            <label for="validationTextarea" className="form-label">Movie Title*</label>
+                            <input value={title} onChange={titleInput} type="text" className="form-control is-invalid" id="validationTextarea" placeholder="Enter movie title" autoComplete="none" required />
                         </div>
-                        <input value={title} onChange={titleInput} type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" />
-                    </div>
 
-                    {/* movie rate input */}
-                    <div className="input-group mb-3">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="inputGroup-sizing-default">Movie Rate</span>
+                        {/* movie rate input */}
+                        <div className="mb-3">
+                            <label for="validationTextarea" className="form-label">Movie Rate*</label>
+                            <input input value={rate} onChange={rateInput} type="number" step="0.1" className="form-control is-invalid" id="validationTextarea" placeholder="Enter movie rate (A number)" autoComplete="none" required />
                         </div>
-                        <input value={rate} onChange={rateInput} type="number" step="0.1" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" />
-                    </div>
 
-                    {/* movie category input */}
-                    <div className="col-md-3 position-relative" style={{ width: '100%' }}>
-                        <select value={category} onChange={categoryInput} className="form-select" id="validationTooltip04" required>
-                            <option selected disabled value="">Select Category</option>
-                            <option>פעולה</option>
-                            <option>מדע בדיוני</option>
-                            <option>מתח</option>
-                            <option>קומדיה</option>
-                            <option>דרמה</option>
-                        </select>
-                        <div className="invalid-tooltip">
-                            Please select a valid state.
+                        {/* movie category select */}
+                        <div className="mb-3">
+                            <label for="validationTextarea" className="form-label">Movie Category*</label>
+                            <select value={category} onChange={categoryInput} className="form-select" id="validationTooltip04" required>
+                                <option selected disabled value="">Select Category</option>
+                                <option>Action</option>
+                                <option>Science Fiction</option>
+                                <option>Thriller</option>
+                                <option>Comedy</option>
+                                <option>Drama</option>
+                            </select>
                         </div>
-                    </div>
-
-                    <div>
-                        <Button style={{ display: 'flex', margin: 'auto', marginTop: 15 }} onClick={openEditView}>Edit</Button>
-                        <Button style={{ display: 'flex', margin: 'auto', marginTop: 15 }} onClick={saveEdit}>Save</Button>
-                    </div>
+                        <div>
+                            <Button style={{ display: 'flex', margin: 'auto', marginTop: 15 }} onClick={openEditView}>Edit</Button>
+                            {title.trim() !== '' && rate.toString().trim() !== '' && category.trim() !== '' ? (
+                                <Button style={{ display: 'flex', margin: 'auto', marginTop: 15 }} onClick={saveEdit}>Save</Button>
+                            ) : (
+                                <Button style={{ display: 'flex', margin: 'auto', marginTop: 15 }} onClick={saveEdit} disabled>Save</Button>
+                            )}
+                            <Button style={{ display: 'flex', margin: 'auto', marginTop: 15 }} onClick={deleteMovie}>Delete Movie</Button>
+                        </div>
+                    </form>
                 </>
             ) : (
                 <>
@@ -100,9 +107,9 @@ function MovieDetailsBody() {
                     <h3>Category: {moviesRed.category}</h3>
                     <h3>Rating: {moviesRed.rate}</h3>
 
-                    <div>
+                    {/* <div>
                         <Button onClick={openEditView}>Edit</Button>
-                    </div>
+                    </div> */}
                 </>
             )}
 

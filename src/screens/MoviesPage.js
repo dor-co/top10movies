@@ -6,23 +6,20 @@ import { useFirestore } from "reactfire";
 import "firebase/firestore";
 import MovieCard from '../components/MovieCard';
 import { useSelector, useDispatch } from "react-redux";
-import { open, close } from "../redux/Actions";
+import { open, close, getData } from "../redux/Actions";
 import AddMovieBody from '../components/addMovieBody/AddMovieBody';
 import MovieDetailsBody from '../components/movieDetailsBody/MovieDetailsBody';
+import EditMovieBody from '../components/editMovieBody/EditMovieBody';
 
 function App() {
     const moviesRed = useSelector((state) => state.moviesReducer);
+    
     const dispatch = useDispatch();
 
     const db = useFirestore();
 
-    //const [modalOpen, setModalOpen] = useState(false);
     const [movie, setMovie] = useState([]);
     const [selectCategory, setSelectCategory] = useState('');
-
-    // const ref = useFirestore().collection("Movies").doc("MoviesList");
-    // const refData = useFirestoreDocData(ref).data;
-    // console.log('!!!!',refData)
 
     const useItems = (itemType, callback, items) => {
         useEffect(() => {
@@ -46,20 +43,16 @@ function App() {
 
     useItems("Movies", setMovie, movie);
 
-    // console.log(movie);
-
     const openModal = (add, addBody) => {
-        // setModalOpen(true)
+        dispatch(getData(movie));
         dispatch(open(add, addBody));
     }
 
     const addMovie = () => {
-        // setModalOpen(true)
         openModal('Add New Movie', 'addBody')
     }
 
     const closeModal = () => {
-        //setModalOpen(false)
         return dispatch(close())
     }
 
@@ -69,21 +62,21 @@ function App() {
 
     return (
         <div className="App">
-            <h1>top 10 movies of ABC company</h1>
-            
-            <div style={{marginBottom: 15}}>
-                <Button onClick={addMovie} style={{position: 'absolute', right: 10}}>Add Movie</Button>
+            <h1>Top 10 movies of ABC company</h1>
 
-                <div className="col-md-3 position-relative" style={{ margin: 10 }}>
+            <div style={{marginBottom: 60}}>
+                <Button onClick={addMovie} style={{position: 'absolute', right: '10%'}}>Add Movie</Button>
+
+                <div className="col-md-3 position-relative" style={{ margin: 0 }}>
                     {/* <label for="validationTooltip04" class="form-label">State</label> */}
-                    <select value={selectCategory} onChange={selectChange} className="form-select" id="validationTooltip04" required>
+                    <select style={{maxWidth: 200, marginLeft: '10%', position: 'fixed'}} value={selectCategory} onChange={selectChange} className="form-select" id="validationTooltip04" required>
                         <option selected disabled value="">Filter By</option>
-                        <option>select all</option>
-                        <option>פעולה</option>
-                        <option>מדע בדיוני</option>
-                        <option>מתח</option>
-                        <option>קומדיה</option>
-                        <option>דרמה</option>
+                        <option>Select All</option>
+                        <option>Action</option>
+                        <option>Science Fiction</option>
+                        <option>Thriller</option>
+                        <option>Comedy</option>
+                        <option>Drama</option>
                     </select>
                     <div className="invalid-tooltip">
                         Please select a valid state.
@@ -92,7 +85,7 @@ function App() {
             </div>
 
             {
-                selectCategory !== '' && selectCategory !== 'select all' ? (
+                selectCategory !== '' && selectCategory !== 'Select All' ? (
                     movie
                     .filter(e => e.category === selectCategory)
                     .sort((a, b) => b.rate - a.rate)
@@ -123,30 +116,39 @@ function App() {
                 contentclassname={"modal-content "}
             >
                 <Modal.Header className='modalHeaderStyle'>
-
                     <Modal.Title id="contained-modal-title-vcenter">
                         {moviesRed.modalHeader}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className='modalTextStyle'>
-                        {moviesRed.body === 'addBody' ? (
+                        {moviesRed.body === 'edit' && (
                             <>
                                 {/* <h3>add!!!</h3> */}
-                                <AddMovieBody />
+                                {/* <EditMovieBody item={moviesRed} /> */}
+                                <AddMovieBody movieItem={moviesRed} />
                             </>
-                        ) : (
-                            <MovieDetailsBody />
                         )}
-                    </div>
 
+                        {moviesRed.body === 'addBody' && (
+                            <>
+                                {/* <h3>add!!!</h3> */}
+                                <AddMovieBody movieItem={moviesRed} />
+                            </>
+                        )}
+
+                        {moviesRed.body === 'no add' && (
+                            <>
+                                {/* <h3>add!!!</h3> */}
+                                <MovieDetailsBody />
+                            </>
+                        )}
+                        
+                        
+
+
+                    </div>
                 </Modal.Body>
-                {/* <Modal.Footer style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}>
-                    </Modal.Footer> */}
             </Modal>
 
         </div>
