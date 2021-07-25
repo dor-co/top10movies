@@ -1,22 +1,22 @@
-import { useSelector, useDispatch } from "react-redux";
-import { open, close } from "../redux/Actions";
+import { useDispatch } from "react-redux";
+import { open } from "../redux/Actions";
 import './Style.css';
 
 function MovieCard({ item }) {
-    const moviesRed = useSelector((state) => state.moviesReducer);
+    // const moviesRed = useSelector((state) => state.moviesReducer);
     const dispatch = useDispatch();
 
     // console.log('redux from card', moviesRed.boolOpen)
 
-    // console.log('item from card', item)
+    // console.log('item from card', item.id)
 
-    const openMovieDetails = (val, movieDetailsBody, title, category, rate) => {
-        dispatch(open(val, movieDetailsBody, title, category, rate));
+    const openMovieDetails = (val, movieDetailsBody, title, category, rate, id) => {
+        dispatch(open(val, movieDetailsBody, title, category, rate, id));
     }
 
     const viewMovieDetails = () => {
         // setModalOpen(true)
-        openMovieDetails('Movie Details', 'no add', item.title, item.category, item.rate)
+        openMovieDetails('Movie Details', 'no add', item.title, item.category, item.rate, item.id)
     }
 
     return (

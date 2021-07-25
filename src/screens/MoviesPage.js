@@ -2,7 +2,7 @@
 import '../App.css';
 import { Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from 'react';
-import { useFirestore, useFirestoreDocData } from "reactfire";
+import { useFirestore } from "reactfire";
 import "firebase/firestore";
 import MovieCard from '../components/MovieCard';
 import { useSelector, useDispatch } from "react-redux";
@@ -76,7 +76,7 @@ function App() {
 
                 <div className="col-md-3 position-relative" style={{ margin: 10 }}>
                     {/* <label for="validationTooltip04" class="form-label">State</label> */}
-                    <select onChange={selectChange} className="form-select" id="validationTooltip04" required>
+                    <select value={selectCategory} onChange={selectChange} className="form-select" id="validationTooltip04" required>
                         <option selected disabled value="">Filter By</option>
                         <option>select all</option>
                         <option>פעולה</option>
