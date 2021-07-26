@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useFirestore } from "reactfire";
 import { useDispatch, useSelector } from "react-redux";
 import { close } from "../../redux/Actions";
+import './Style.css';
 
 function AddMovieBody({movieItem}) {
     const firestoreRed = useSelector((state) => state.firestoreReducer);
@@ -85,6 +86,10 @@ function AddMovieBody({movieItem}) {
         return dispatch(close())
     }
 
+    const closeModal = () => {
+        return dispatch(close())
+    }
+
     return (
         <div>
             <form className="was-validated">
@@ -96,7 +101,7 @@ function AddMovieBody({movieItem}) {
                     {titleValid ? (
                         null
                     ) : (
-                        <label style={{ color: 'red' }} for="validationTextarea" className="form-label">Movie title already exists</label>
+                        <label for="validationTextarea" className="form-label errorLabel">Movie title already exists</label>
                     )}
                 </div>
 
@@ -121,10 +126,13 @@ function AddMovieBody({movieItem}) {
 
                 {/* add or edit movie */}
                 {title !== '' && rate !== '' && category !== '' && titleValid ? (
-                    <Button onClick={movieItem.body === 'addBody' ? addNewMovie : editMovie} style={{ display: 'flex', margin: 'auto', marginTop: 15 }}>{movieItem.body === 'addBody' ? 'Add' : 'Save'}</Button>
-                ) : (
-                    <Button onClick={movieItem.body === 'addBody' ? addNewMovie : editMovie} style={{ display: 'flex', margin: 'auto', marginTop: 15 }} disabled>{movieItem.body === 'addBody' ? 'Add' : 'Save'}</Button>
+                    <Button className='addSaveBtn' onClick={movieItem.body === 'addBody' ? addNewMovie : editMovie}>{movieItem.body === 'addBody' ? 'Add' : 'Save'}</Button>
+                    ) : (
+                    <Button className='addSaveBtn' onClick={movieItem.body === 'addBody' ? addNewMovie : editMovie} disabled>{movieItem.body === 'addBody' ? 'Add' : 'Save'}</Button>
                 )}
+
+                <Button className='cancelBtn' onClick={closeModal}>Cancel</Button>
+
             </form>
         </div>
     );

@@ -4,12 +4,13 @@ import { Button, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from 'react';
 import { useFirestore } from "reactfire";
 import "firebase/firestore";
-import MovieCard from '../components/MovieCard';
+import MovieCard from '../components/movieCard/MovieCard';
 import { useSelector, useDispatch } from "react-redux";
 import { open, close, getData } from "../redux/Actions";
 import AddMovieBody from '../components/addMovieBody/AddMovieBody';
 import MovieDetailsBody from '../components/movieDetailsBody/MovieDetailsBody';
 import EditMovieBody from '../components/editMovieBody/EditMovieBody';
+import './Style.css';
 
 function App() {
     const moviesRed = useSelector((state) => state.moviesReducer);
@@ -62,14 +63,14 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Top 10 movies of ABC company</h1>
+            <h1 className='screenTitle'>Top 10 movies of ABC company</h1>
 
-            <div style={{marginBottom: 60}}>
-                <Button onClick={addMovie} style={{position: 'absolute', right: '10%'}}>Add Movie</Button>
+            <div className='screenContainer'>
+                <Button className='addMovieBtn' onClick={addMovie}>Add Movie</Button>
 
-                <div className="col-md-3 position-relative" style={{ margin: 0 }}>
+                <div className="col-md-3 position-relative selectContainer">
                     {/* <label for="validationTooltip04" class="form-label">State</label> */}
-                    <select style={{maxWidth: 200, marginLeft: '10%', position: 'fixed'}} value={selectCategory} onChange={selectChange} className="form-select" id="validationTooltip04" required>
+                    <select value={selectCategory} onChange={selectChange} className="form-select selectStyle" id="validationTooltip04" required>
                         <option selected disabled value="">Filter By</option>
                         <option>Select All</option>
                         <option>Action</option>
@@ -124,28 +125,21 @@ function App() {
                     <div className='modalTextStyle'>
                         {moviesRed.body === 'edit' && (
                             <>
-                                {/* <h3>add!!!</h3> */}
-                                {/* <EditMovieBody item={moviesRed} /> */}
                                 <AddMovieBody movieItem={moviesRed} />
                             </>
                         )}
 
                         {moviesRed.body === 'addBody' && (
                             <>
-                                {/* <h3>add!!!</h3> */}
                                 <AddMovieBody movieItem={moviesRed} />
                             </>
                         )}
 
                         {moviesRed.body === 'no add' && (
                             <>
-                                {/* <h3>add!!!</h3> */}
                                 <MovieDetailsBody />
                             </>
                         )}
-                        
-                        
-
 
                     </div>
                 </Modal.Body>
