@@ -16,3 +16,39 @@ background: #3d8bff;
 .closeModalBtn:focus{
 background: #3d8bff;
 }
+
+.deleteTitle{
+    width: 78%;
+}
+
+.deleteMovieBtn{
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    position: absolute;
+    right: 100px;
+    bottom: 15px;
+    background: #2a7fff;
+    border: none;
+}
+
+@media (max-width: 920px){
+    .deleteMovieBtn {
+        display: initial;
+        margin: auto;
+        margin-top: 15px;
+        position: initial;
+        right: 100px;
+        bottom: 15px;
+        background: #2a7fff;
+        border: none;
+    }
+
+    .deleteMovieBtn:hover{
+        background: #3d8bff;
+    }
+        
+        .deleteMovieBtn:focus{
+        background: #3d8bff;
+    }
+}
