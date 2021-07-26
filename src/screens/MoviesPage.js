@@ -140,6 +140,12 @@ function App() {
                             </>
                         )}
 
+                        {moviesRed.body === 'delete' && (
+                            <>
+                                <MovieDetailsBody />
+                            </>
+                        )}
+
                     </div>
                 </Modal.Body>
             </Modal>
