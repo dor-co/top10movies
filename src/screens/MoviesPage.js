@@ -85,6 +85,7 @@ function App() {
                 </div>
             </div>
 
+            <div className='cardsContainer'>
             {
                 selectCategory !== '' && selectCategory !== 'Select All' ? (
                     movie
@@ -107,6 +108,7 @@ function App() {
                     })
                 )
             }
+            </div>
 
             <Modal
                 show={moviesRed.boolOpen}
