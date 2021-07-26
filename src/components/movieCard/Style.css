@@ -84,7 +84,7 @@
     display: flex;
 }
 
-@media (max-width: 920px){
+@media (max-width: 768px){
     .movieTitle{
         margin-left: 10px; 
         margin-top: 22px;
