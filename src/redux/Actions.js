@@ -1,6 +1,6 @@
 import * as actions from "./Consts";
 
-export const open = (modalHeader, modalBody, modalTitle, modalCategory, modalRate, movieId) => {
+export const open = (modalHeader, modalBody, modalTitle, modalCategory, modalRate, movieId, movieImg) => {
   return {
     type: actions.OPEN_MODAL,
     header: modalHeader,
@@ -8,7 +8,8 @@ export const open = (modalHeader, modalBody, modalTitle, modalCategory, modalRat
     title: modalTitle,
     category: modalCategory,
     rate: modalRate,
-    id: movieId
+    id: movieId,
+    img: movieImg
   };
 };
 
