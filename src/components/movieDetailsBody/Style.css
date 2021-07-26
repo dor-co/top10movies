@@ -32,7 +32,7 @@ background: #3d8bff;
     border: none;
 }
 
-@media (max-width: 920px){
+@media (max-width: 768px){
     .deleteMovieBtn {
         display: initial;
         margin: auto;
@@ -50,5 +50,9 @@ background: #3d8bff;
         
         .deleteMovieBtn:focus{
         background: #3d8bff;
+    }
+
+    .deleteTitle{
+        width: 100%;
     }
 }
