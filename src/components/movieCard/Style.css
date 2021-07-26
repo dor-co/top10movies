@@ -1,0 +1,72 @@
+.card{
+    cursor: pointer;
+}
+
+.border-dark{
+    border-color: #d5d5d5 !important;
+}
+
+.mb-3 {
+    margin-bottom: 0rem !important;
+}
+
+.movieImg{
+    height: 67px;
+}
+
+.movieTitle{
+    margin-left: 10px; 
+    margin-top: 22px;
+}
+
+.editBtn{
+    display: flex; 
+    margin: auto; 
+    margin-top: -67px; 
+    margin-right: 10%;
+    position: absolute;
+    right: 10px;
+    background: #414141;
+    border: none;
+}
+
+.editBtn:hover{
+    background: #636363;
+}
+
+.editBtn:focus{
+    background: #636363;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.editBtn:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.deleteBtn{
+    display: flex;
+    margin: auto; 
+    margin-top: -67px;
+    margin-right: 10%;
+    position: absolute;
+    right: 70px;
+    background: #e42a2a;
+    border: none;
+}
+
+.deleteBtn:hover{
+    background: #e94a4a;
+}
+
+.deleteBtn:focus{
+    background: #e94a4a;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.deleteBtn:active {
+    outline: none !important;
+    box-shadow: none !important;
+}

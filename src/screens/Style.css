@@ -1,0 +1,33 @@
+.screenTitle{
+    margin-bottom: 20px;
+}
+
+.screenContainer{
+    margin-bottom: 65px;
+}
+
+.addMovieBtn{
+    position: absolute; 
+    left: 10%;
+    background: #2a7fff;
+    border: none;
+}
+
+.addMovieBtn:hover{
+    background: #3d8bff;
+}
+
+.addMovieBtn:focus{
+    background: #3d8bff;
+}
+
+.selectContainer{
+    margin: 0px;
+}
+
+.selectStyle{
+    max-width: 200px; 
+    margin-left: 10%; 
+    position: fixed;
+    right: 10%;
+}

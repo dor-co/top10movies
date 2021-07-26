@@ -1,0 +1,18 @@
+.closeModalBtn{
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background: #2a7fff;
+    border: none;
+}
+
+.closeModalBtn:hover{
+background: #3d8bff;
+}
+
+.closeModalBtn:focus{
+background: #3d8bff;
+}
