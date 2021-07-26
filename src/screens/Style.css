@@ -37,3 +37,18 @@
 .cardsContainer{
     margin-top: 100px;
 }
+
+@media (max-width: 920px){
+    .selectStyle{
+        max-width: 150px; 
+        position: absolute;
+        right: 10%; 
+    }
+
+    .screenTitle{
+        margin-top: 5px;
+        margin-bottom: 50px;
+        font-weight: bold;
+        font-size: 23px;
+    }
+}
