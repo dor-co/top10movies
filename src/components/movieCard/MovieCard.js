@@ -11,8 +11,8 @@ function MovieCard({ item }) {
 
     const db = useFirestore();
 
-    const openMovieDetails = (val, movieDetailsBody, title, category, rate, id) => {
-        dispatch(open(val, movieDetailsBody, title, category, rate, id));
+    const openMovieDetails = (val, movieDetailsBody, title, category, rate, id, image) => {
+        dispatch(open(val, movieDetailsBody, title, category, rate, id, image));
     }
 
     const viewMovieDetails = () => {
@@ -20,7 +20,7 @@ function MovieCard({ item }) {
     }
 
     const viewMovieEdit = () => {
-        openMovieDetails('Edit Movie', 'edit', item.title, item.category, item.rate, item.id)
+        openMovieDetails('Edit Movie', 'edit', item.title, item.category, item.rate, item.id, item.imageSrc)
     }
 
     const deleteMovie = () => {

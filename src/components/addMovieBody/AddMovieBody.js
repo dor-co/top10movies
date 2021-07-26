@@ -11,6 +11,7 @@ function AddMovieBody({movieItem}) {
     const [title, setTitle] = useState(movieItem.body === 'addBody' ? '' : movieItem.title);
     const [rate, setRate] = useState(movieItem.body === 'addBody' ? '' : movieItem.rate);
     const [category, setCategory] = useState(movieItem.body === 'addBody' ? '' : movieItem.category);
+    const [image, setImage] = useState(movieItem.body === 'addBody' ? '' : movieItem.img);
     const [titleValid, setTitleValid] = useState(true);
 
     const db = useFirestore();
@@ -65,12 +66,22 @@ function AddMovieBody({movieItem}) {
         }
     }
 
+    const imageInput = (e) => {
+        if(movieItem.body === 'addBody'){
+            setImage(e.target.value);
+        }else{
+            movieItem.img = e.target.value;
+            setImage(e.target.value);
+        }
+    }
+
     const addNewMovie = () => {
         if (firestoreRed.data.findIndex(x => x.title === title) === -1) {
             db.collection("Movies").add({
                 title: title,
                 rate: rate,
-                category: category
+                category: category,
+                imageSrc: image
             })
             return dispatch(close())
         }
@@ -81,7 +92,8 @@ function AddMovieBody({movieItem}) {
             .update({
                 title: title,
                 rate: rate,
-                category: category
+                category: category,
+                imageSrc: image
             })
         return dispatch(close())
     }
@@ -122,6 +134,12 @@ function AddMovieBody({movieItem}) {
                         <option>Comedy</option>
                         <option>Drama</option>
                     </select>
+                </div>
+
+                {/* movie image input */}
+                <div className="mb-3">
+                    <label for="validationTextarea" className="form-label">Movie Image</label>
+                    <input value={movieItem.body === 'addBody' ? image : movieItem.img} onChange={imageInput} type="text" className="form-control is-invalid" id="validationTextarea" placeholder="Please enter URL image (Not Required)" autoComplete="none" />
                 </div>
 
                 {/* add or edit movie */}
